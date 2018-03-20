@@ -90,9 +90,10 @@ class DictTypeController extends Controller
         return Admin::form(DictType::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->display('name', '名称');
+            $form->display('note', '介绍');
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->display('created_time', '创建时间');
         });
     }
 }
