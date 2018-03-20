@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class DictType extends Model
 {
     protected $connection = 'bitcoin';
+    protected $table = 'dict_type';
     //
 }
