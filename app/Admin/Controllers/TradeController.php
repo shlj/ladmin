@@ -17,6 +17,19 @@ class TradeController extends Controller
     use ModelForm;
 
     /**
+     * @var array
+     */
+    private $bitList = [];
+
+    public function __construct()
+    {
+        $list = DictType::where(['is_delete' => 1])->get(['id', 'name']);
+        foreach ($list as $item) {
+            $this->bitList[$item['id']] = $item['name'];
+        }
+    }
+
+    /**
      * Index interface.
      *
      * @return Content
@@ -85,6 +98,10 @@ class TradeController extends Controller
             $grid->create_time('创建时间');
             $grid->update_time('更新时间');
 
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('dict_type_id')->radio($this->bitList);
+            });
+
         });
     }
 
@@ -96,17 +113,12 @@ class TradeController extends Controller
     protected function form()
     {
         return Admin::form(Trade::class, function (Form $form) {
-            $bitList = [];
-            $list = DictType::where(['is_delete' => 1])->get(['id', 'name']);
-            foreach ($list as $item) {
-                $bitList[$item['id']] = $item['name'];
-            }
             $exchangeType = [
                 1 => '买入',
                 2 => '卖出',
             ];
             $form->display('id', 'ID');
-            $form->select('dict_type_id', '币种')->options($bitList);
+            $form->select('dict_type_id', '币种')->options($this->bitList);
             $form->select('exchange_type', '交易类型')->options($exchangeType);
             $form->number('bit_price', '交易单价');
             $form->number('bit_amount', '交易数量');
