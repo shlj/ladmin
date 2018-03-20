@@ -80,7 +80,7 @@ class TradeController extends Controller
             $grid->column('exchange_type','交易类型')->display(function ($exchange_type) {
                 return $exchange_type == 1 ? '买入' : '卖出';
             });
-            $grid->bit_price('单价');
+            $grid->bit_price_total('总金额');
             $grid->dictType()->name('币种名称');
             $grid->create_time('创建时间');
             $grid->update_time('更新时间');
