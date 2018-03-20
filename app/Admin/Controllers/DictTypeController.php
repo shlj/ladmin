@@ -92,8 +92,6 @@ class DictTypeController extends Controller
             $form->display('id', 'ID');
             $form->text('name', '名称');
             $form->text('note', '介绍');
-
-            $form->display('created_time', '创建时间');
         });
     }
 }
