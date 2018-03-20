@@ -75,7 +75,15 @@ class TradeController extends Controller
         return Admin::grid(Trade::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->bit_price('单价');
+            $grid->bit_amount('数量');
+            $grid->column('exchange_type','交易类型')->display(function ($exchange_type) {
+                return $exchange_type == 1 ? '买入' : '卖出';
+            });
+            $grid->bit_price('单价');
             $grid->dictType()->name('币种名称');
+            $grid->create_time('创建时间');
+            $grid->update_time('更新时间');
 
         });
     }
