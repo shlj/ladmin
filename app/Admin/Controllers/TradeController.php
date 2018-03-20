@@ -100,6 +100,10 @@ class TradeController extends Controller
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('dict_type_id')->radio($this->bitList);
+                $filter->equal('exchange_type')->radio([
+                    1 => '买入',
+                    2 => '卖出',
+                ]);
             });
 
         });
