@@ -98,6 +98,10 @@ class TradeController extends Controller
             $grid->create_time('创建时间');
             $grid->update_time('更新时间');
 
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->disableDelete();
+            });
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('dict_type_id')->radio($this->bitList);
                 $filter->equal('exchange_type')->radio([
