@@ -30,8 +30,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         Trade::saving(function ($data) {
-            Log::info('--TEST--',['data' => $data]);
-            var_dump($data);exit();
+            $data->bit_price_total = bcmul($data->bit_price, $data->bit_amount);
         });
         //
     }
