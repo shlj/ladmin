@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DictType extends Model
+class Trade extends Model
 {
     protected $connection = 'bitcoin';
-    protected $table = 'dict_type';
+    protected $table = 'trade';
+    //
     const CREATED_AT = 'create_time';
     const UPDATED_AT = 'update_time';
 
-    public function trade()
+    public function dictType()
     {
-        return $this->belongsTo(Trade::class);
+        return $this->hasOne(DictType::class);
     }
 }
