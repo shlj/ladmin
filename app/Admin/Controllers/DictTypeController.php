@@ -24,8 +24,8 @@ class DictTypeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('币种字典');
+            $content->description('币种字典维护');
 
             $content->body($this->grid());
         });
@@ -77,6 +77,10 @@ class DictTypeController extends Controller
 
             $grid->name('名称');
             $grid->note('备注');
+            $grid->is_delete('是否有效')->switch([
+                'on' => ['value' => 1, 'text' => '有效', 'color' => 'primary'],
+                'off' => ['value' => 2, 'text' => '无效', 'color' => 'default'],
+            ]);
             $grid->create_time('创建时间');
             $grid->update_time('更新时间');
         });
@@ -94,6 +98,7 @@ class DictTypeController extends Controller
             $form->display('id', 'ID');
             $form->text('name', '名称');
             $form->text('note', '介绍');
+            $form->radio('is_delete', '是否可用')->options([1 => '有效', 2 => '无效'])->default(1);
         });
     }
 }
