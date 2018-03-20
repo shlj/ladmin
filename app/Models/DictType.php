@@ -13,6 +13,6 @@ class DictType extends Model
 
     public function trade()
     {
-        return $this->belongsTo(Trade::class);
+        return $this->hasOne(Trade::class);
     }
 }

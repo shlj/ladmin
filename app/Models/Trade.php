@@ -14,7 +14,7 @@ class Trade extends Model
 
     public function dictType()
     {
-        return $this->hasOne(DictType::class);
+        return $this->belongsTo(DictType::class);
     }
 
 }
