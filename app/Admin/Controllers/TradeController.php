@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\DictType;
 use App\Models\Trade;
 
 use Encore\Admin\Form;
@@ -87,9 +88,13 @@ class TradeController extends Controller
     protected function form()
     {
         return Admin::form(Trade::class, function (Form $form) {
-
+            $bitList = [];
+            $list = DictType::where(['is_delete' => 1])->get(['id', 'name']);
+            foreach ($list as $item) {
+                $bitList[$item['id']] = $item['name'];
+            }
             $form->display('id', 'ID');
-
+            $form->select('')->options($bitList);
         });
     }
 }
