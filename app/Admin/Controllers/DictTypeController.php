@@ -75,8 +75,10 @@ class DictTypeController extends Controller
 
             $grid->id('ID')->sortable();
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->name('名称');
+            $grid->note('备注');
+            $grid->create_time('创建时间');
+            $grid->update_time('更新时间');
         });
     }
 
