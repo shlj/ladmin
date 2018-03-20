@@ -16,4 +16,5 @@ class Trade extends Model
     {
         return $this->hasOne(DictType::class);
     }
+
 }

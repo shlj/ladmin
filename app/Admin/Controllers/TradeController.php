@@ -93,8 +93,15 @@ class TradeController extends Controller
             foreach ($list as $item) {
                 $bitList[$item['id']] = $item['name'];
             }
+            $exchangeType = [
+                1 => '买入',
+                2 => '卖出',
+            ];
             $form->display('id', 'ID');
-            $form->select('')->options($bitList);
+            $form->select('dict_type_id', '币种')->options($bitList);
+            $form->select('exchange_type', '交易类型')->options($exchangeType);
+            $form->number('bit_price', '交易单价');
+            $form->number('bit_amount', '交易数量');
         });
     }
 }
